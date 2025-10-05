@@ -6,24 +6,19 @@ import { transporter } from '../../config/db/mailer.js'
 import { config } from '../../config/db/config.js'
 
 
-
-
 export const AuthService = {
+
     register: async (userData) => {
         const { first_name, last_name, age, email, password } = userData;
         if (!first_name || !last_name || !age || !email || !password) {
             throw new Error("All data is required");
         }
 
-        // console.log("tengo los datos para registrar",email)
         const exist = await UserRepository.getByEmail(email);
         if (exist) {
             throw new Error("Email already registered...!!")
         }
-
-        // console.log("el usuario no existe",exist)
         const cart = await CartRepository.createEmptyCart();
-
         const newUser = await UserRepository.createUser({
             first_name,
             last_name,
@@ -33,22 +28,16 @@ export const AuthService = {
             cart: cart._id,
             role: 'user'
         });
-        // console.log("tengo el nuevo usuario",newUser)
         return newUser;
-
     },
 
     login: async (email, password) => {
-        console.log("voya a loguearme con el email", email)
-        const user = await UserRepository.findByEmailWithCart(email);
 
-        console.log("obtuve el user", user)
+        const user = await UserRepository.findByEmailWithCart(email);
         if (!user || !user.password) {
             throw new Error("invalid credentials");
         }
-        console.log("comparando los password", password, user.password)
         const ok = comparePassword(password, user.password)
-
         if (!ok) {
             throw new Error("invalid credentials");
         }
@@ -60,19 +49,18 @@ export const AuthService = {
             age: user.age,
             role: user.role,
             cart: user.cart
-
         };
     },
+
     forgotPassword: async (email) => {
         const user = await UserRepository.getByEmail(email);
         if (!user) throw new Error("User not found");
 
-        console.log("encontramos al usuario", user)
         const token = crypto.randomBytes(32).toString("hex");
         const exp = Date.now() + 60 * 60 * 1000;
         await UserRepository.saveResetToken(user._id, token, exp);
         const resetLink = `${config.usrURL}/reset-password/${token}`;
-        console.log("viendo si pasa por aca ", resetLink)
+
         await transporter.sendMail({
             from: `"Ecommerce" <${config.userFrom}>`,
             to: user.email,
@@ -86,6 +74,7 @@ export const AuthService = {
 
         return true;
     },
+
     resetPassword: async (token, newPassword) => {
 
         const user = await UserRepository.getByResetToken(token);

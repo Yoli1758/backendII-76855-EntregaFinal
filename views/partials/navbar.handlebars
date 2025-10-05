@@ -1,0 +1,69 @@
+<div class="navbar">
+    <div>
+        <a href="/"><img src="/img/yesport_logo.jpg" alt="Logo"></a>
+    </div>
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Home</a></li>
+            {{#if isAdmin}}
+            {{else}}
+            <li><a href="/products">Products</a></li>
+            {{/if}}
+
+            {{#if isAdmin}}
+            <li>
+                <div class="dropdown">
+                    <a href="#" id="admin-toggle">Admin ⬇️</a>
+                    <ul class="dropdown-menu" id="admin-menu">
+                        <li><a href="/users">Editar Usuarios</a></li>
+                        <li><a href="/editProducts">Editar Productos</a></li>
+                    </ul>
+                </div>
+            </li>
+            {{/if}}
+            <li>
+                {{#if user}}
+                <a href="/profile">
+                    <p style="padding-left: 25px;"><i class="fa-solid fa-circle-user" title="Perfil"></i></p>
+                </a>
+                {{#if isGenericAdmin}}
+                <span style="color: white;">Bienvenido</span>
+
+                {{else}}
+                <span style="color: white;">Hola, {{user.first_name}}</span>
+                {{/if}}
+
+                {{/if}}
+            </li>
+
+   {{#if isAdmin}}
+     <!-- No mostrar carrito -->
+            {{else}}
+           <li>
+                <a href="/cart">
+                    <p style="padding-left: 15px; "><i class="fa-solid fa-cart-shopping"
+                            style="font-size:30px;color:orangered" title="Car"></i>
+                             {{#if user}}
+                            <span id="cart-count">{{cartCount}}</span>
+                            {{/if}}
+                            </p>
+                </a>
+            </li>
+            {{/if}}
+          
+            <li>
+                {{#if user}}
+
+                <a href="/auth/logout"><img src="/img/cerrar_sesion_2.png" alt="salir" title="Logout"></a>
+                {{else}}
+                <a href="/login">
+                    <p><i class="fa-regular fa-circle-user"></i></p>
+                </a>
+                {{/if}}
+
+            </li>
+
+        </ul>
+    </nav>
+
+</div>

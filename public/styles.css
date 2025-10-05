@@ -1,0 +1,402 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+.contenedor-principal {
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+}
+
+.navbar img {
+    width: 80px;
+    height: 80px;
+}
+
+.navbar nav img {
+    width: 40px;
+    height: 40px;
+}
+
+.navbar nav ul.menu {
+    list-style: none;
+    display: flex;
+}
+
+.navbar nav ul li {
+    margin: 20px;
+}
+
+.navbar nav ul li a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+}
+
+.contenedor-bienvenido {
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 50px;
+
+}
+
+.login {
+
+    margin: 10px auto;
+    background-color: rgb(241, 234, 234);
+    border: solid black 2px;
+    width: 500px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+
+}
+
+.login h2 {
+    font-size: 40px;
+    padding-top: 10px;
+}
+
+.login .data {
+    width: 450px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login .data input {
+    height: 60px;
+    font-size: 25px;
+
+}
+
+.login .data button {
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+    font-size: 20px;
+    background-color: aqua;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.login .data button:hover {
+    background-color: red;
+}
+
+.login a {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.register {
+
+    margin: 10px auto;
+    background-color: rgb(241, 234, 234);
+    border: solid black 2px;
+    width: 500px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+
+.register h2 {
+    font-size: 40px;
+    padding-top: 10px;
+}
+
+
+.register .data {
+    width: 450px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.register .data input {
+    height: 60px;
+    font-size: 25px;
+
+}
+
+.register .data button {
+    width: 150px;
+    height: 50px;
+    margin: 0 auto;
+    font-size: 20px;
+    background-color: aqua;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.register .data button:hover {
+    background-color: red;
+}
+
+.register a {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.contenedor-bienvenido h2 {
+    color: black;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 25px;
+    text-decoration-color: #ff000075;
+}
+
+.contenedor-bienvenido p {
+
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0;
+    color: #008000;
+}
+
+.contenedor-bienvenido span {
+    background-color: #ffff00;
+    color: #ff0000;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.ghost-input {
+    background-color: #f5f5f5;
+    color: #666;
+    border: 1px solic #ccc;
+    pointer-events: none;
+    user-select: none;
+}
+
+.profile {
+
+    margin: 10px auto;
+    background-color: rgb(241, 234, 234);
+    border: solid black 2px;
+    width: 500px;
+    height: 300px;
+
+
+}
+
+.profile .data {
+
+    margin: 5px;
+    padding: 5px;
+    width: 490px;
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile input {
+    height: 30px;
+    font-size: 25px;
+
+}
+
+.profile label {
+    font-size: 20px;
+}
+
+.profile button {
+    width: 200px;
+    height: 50px;
+    margin: 0 auto;
+    font-size: 20px;
+    background-color: aqua;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.gestion {
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px auto;
+    border-collapse: collapse;
+    font-size: 16px;
+    text-align: center;
+}
+
+.gestion th,
+.gestion td {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+}
+
+
+.gestion th:nth-child(3),
+.gestion td:nth-child(3) {
+    min-width: 280px;
+}
+
+.gestion th:nth-child(3),
+.gestion td:nth-child(3) {
+    min-width: 300px;
+}
+
+
+.gestion input,
+.gestion select {
+    width: 100%;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.gestion input[readonly] {
+    background-color: #f5f5f5;
+    color: #666;
+}
+
+
+.gestion button {
+    padding: 8px 14px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.gestion button[type="submit"] {
+    background-color: #3498db;
+}
+
+.gestion button[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+
+.gestion form[action*="delete"] button {
+    background-color: #e74c3c;
+}
+
+.gestion form[action*="delete"] button:hover {
+    background-color: #c0392b;
+}
+
+.gestion thead {
+    background-color: #0d3818;
+    color: white;
+
+}
+
+.gestion tr:nth-child(even) {
+    background-color: #d5f1f1;
+}
+
+.contenedor-productos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    margin-top: 50px;
+}
+
+.productos {
+    border: 2px solid gray;
+    width: 250px;
+    height: 292px;
+    text-align: center;
+    margin: 10px 5px;
+}
+
+.productos img {
+    width: 234px;
+    height: 234px;
+}
+
+.descrip-productos {
+
+    background-color: #9b989565;
+}
+
+.descrip-productos p {
+    margin-bottom: 0;
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: start;
+    padding-left: 10px;
+}
+
+.descrip-productos h2 {
+    color: blue;
+    font-size: 14px;
+}
+
+
+nav .menu { list-style: none; margin: 0; padding: 0; display:flex; gap: 1rem; align-items:center; }
+nav .menu li { position: relative; }
+
+
+.dropdown { position: relative; display: inline-block; }
+.dropdown-menu {
+  display: none;              
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgb(73, 70, 70);
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-direction: column;
+}
+
+
+.dropdown-menu li { border-bottom: 1px solid #eee; }
+.dropdown-menu li a { display:block; padding: 8px 12px; color:#111; text-decoration:none; }
+
+
+.dropdown-menu.show {
+  display: block;
+}
+
+

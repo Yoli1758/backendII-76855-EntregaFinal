@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar Productor</title>
+
+</head>
+
+<body>
+    <h1>Editar Producto</h1>
+    <form action="/products/{{product._id}}?_method=PUT" method="POST">
+        <div>
+            <label>Nombre:</label>
+            <input type="text" name="title" value="{{product.title}}" required />
+        </div>
+        <div>
+            <label>Descripción:</label>
+            <textarea name="description" required>{{product.description}}</textarea>
+        </div>
+        <div>
+            <label>Código:</label>
+            <input type="text" name="code" value="{{product.code}}" required />
+        </div>
+        <div>
+            <label>status:</label>
+            <input type="checkbox" name="status" value="true" {{#if product.status}} checked{{/if}}/>
+        </div>
+        <div>
+            <label>Precio:</label>
+            <input type="number" name="price" value="{{product.price}}" required />
+        </div>
+        <div>
+            <label>Categoría:</label>
+            <input type="text" name="category" value="{{product.category}}" required />
+        </div>
+        <div>
+            <label>Stock:</label>
+            <input type="number" name="stock" value="{{product.stock}}" required />
+        </div>
+        <div>
+            <label>Imagen (URL):</label>
+            <input type="text" name="thumbnails" value="{{product.thumbnails}}" required />
+        </div>
+        <button type="submit">Guardar Cambios</button>
+    </form>
+</body>
+
+</html>

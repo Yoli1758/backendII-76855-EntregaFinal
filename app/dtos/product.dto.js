@@ -10,7 +10,6 @@ export function validProductFields(body) {
         "thumbnails"
     ];
     const missingFields = requieredFields.filter(field => body[field] === undefined || body[field] === null || body[field] === "")
-
     if (missingFields.length > 0) {
         throw new Error(`Requiered Fields: ${missingFields.join(", ")}`);
     }

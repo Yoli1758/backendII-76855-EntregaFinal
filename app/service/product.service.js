@@ -2,12 +2,10 @@ import { ProductRepository } from '../repositories/product.repository.js'
 import { CartRepository } from '../repositories/cart.repository.js'
 
 export class ProductService {
-    static async CreateProduct(data) {
+    static async CreateProduct(data) { return ProductRepository.createProduct(data)   }
 
-        console.log("estoy en ProductService con data", data)
-        return ProductRepository.createProduct(data)
-    }
     static async getProductById(id) { return ProductRepository.getProductById(id) }
+
     static async getAllProducts({ page, limit, sort, ...filter }) {
 
         page = parseInt(page) || 1;
@@ -17,12 +15,11 @@ export class ProductService {
         if (sort) {
             sortOption = sort.startsWith("-") ? { [sort.slice(1)]: -1 } : { [sort]: 1 };
         }
-
-        //console.log(`antes de productrepositori page:${page},limi:${limit},sort:${sortOption},filter:${filter.category}`)
         return ProductRepository.getProducts({ page, limit, sort: sortOption, filter})
     }
-    static async updateProduct(id, data) { return ProductRepository.updateProduct(id, data) }
-    static async deleteProduct(id) { return ProductRepository.deleteProduct(id) }
 
+    static async updateProduct(id, data) { return ProductRepository.updateProduct(id, data) }
+
+    static async deleteProduct(id) { return ProductRepository.deleteProduct(id) }
 
 }

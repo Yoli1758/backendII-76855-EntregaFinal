@@ -1,6 +1,5 @@
 import { hashPassword } from "../../utils/crypto.js";
 
-
 export default class UserDTO{
     constructor(user) {
     this.id = user._id;
@@ -19,6 +18,5 @@ export function toUpdateUserDTO(body) {
         if (!isNaN(parsed)) out.age = parsed;
     }
     if (body?.password) out.password = hashPassword(body.password);
-
     return out;
 }

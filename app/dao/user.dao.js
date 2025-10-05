@@ -1,23 +1,16 @@
 import { User } from '../../config/models/user.model.js'
-
+import { Cart } from '../../config/models/cart.model.js'
 export class UserDAO {
 
     static async createUser(userData) {
         return await User.create(userData)
     }
     static async findByEmail(email) {
-        console.log("voy a buscar el email en la bd", email)
-
         const user = await User.findOne({ email });
-        console.log("regresando", user)
         return user
     }
 
     static async findAll() {
-        // const users = await User.find()
-        // await User.populate(users,{path:"Cart"})
-
-
         return await User.find().populate({
             path: "cart",
             populate: {
@@ -26,6 +19,7 @@ export class UserDAO {
             }
         })
     }
+
     static async findById(id) {
         return await User.findById(id)
             .populate({
@@ -37,6 +31,27 @@ export class UserDAO {
             })
     }
 
+    static async findByIdAndUpdate(id, data) {
+        return await User.findByIdAndUpdate(id, data, { new: true })
+            .populate({
+                path: "cart",
+                populate: {
+                    path: "products.productId",
+                    model: "Product"
+                }
+            })
+    }
+
+    static async deleteUserById(userId) {
+        const user = await User.findById(userId)
+        if (!user) return null;
+        if (user.cart) {
+            await Cart.findByIdAndDelete(user.cart)
+        }
+        await User.findByIdAndDelete(userId);
+        return user;
+    }
+    
     static async saveResetToken(userId, token, exp) {
         return await User.findByIdAndUpdate(userId, {
             resetToken: token,

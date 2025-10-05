@@ -18,6 +18,7 @@ EntregaFinal/
  │    │     ├── auth.controller.js
  │    │     ├── cart.controller.j
  │    │     ├── product.controller.js
+ │    │     ├── profile.controller.js
  │    │     ├── purchase.controller.js
  │    │     └── user.controller.js
  │    │
@@ -60,13 +61,19 @@ EntregaFinal/
  │    │     └── auth.middleware.js
  │    │
  ├── 📂 public/
- │    │
+ │    ├── 📂 img/
+ │    ├── 📂 js/
+ │    └── style.css
+ │    
  ├── 📂 routes/
+ │    │     ├── admin.routes.js
  │    │     ├── auth.routes.js
  │    │     ├── cart.routes.js
  │    │     ├── product.routes.js
+ │    │     ├── profile.routes.js
  │    │     ├── purchase.routes.js
- │    │     └── user.routes.js
+ │    │     ├── user.routes.js
+ │    │     └── views.routes.js
  │    │
  ├── 📂 utils/
  │    │     ├── cryto.js
@@ -75,8 +82,20 @@ EntregaFinal/
  │    │
  ├── 📂 views/
  │    ├── 📂 layouts/
+ │    │    └── main.handlebars
  │    └── 📂 partials/
- │
+ │    │    └── navbar.handlebars
+ │    ├── adminP.handlebars
+ │    ├── adminU.handlebars
+ │    ├── cart.handlebars
+ │    ├── editProduct.handlebars
+ │    ├── failregister.handlebars
+ │    ├── home.handlebars
+ │    ├── login.handlebars
+ │    ├── productts.handlebars
+ │    ├── profile.handlebars
+ │    ├── register.handlebars
+ │    └── resetPassword.routes.js
  ├── app.js
  ├── .env
  ├── package.json

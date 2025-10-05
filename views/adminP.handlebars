@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Productos</title>
+
+</head>
+
+<body>
+
+
+    <main>
+        <div class="container">
+            <h2>Gestión de Productos</h2>
+            <div class="products-table">
+                <table border="1" cellpadding="10" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Imagen</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Código</th>
+                            <th>Precio</th>
+                            <th>Categoría</th>
+                            <th>Stock</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#if products}}
+                        {{#each products}}
+                        <tr>
+                            <td><img src="{{this.thumbnails}}" alt="img" width="60" height="60" /></td>
+                            <td>{{this.title}}</td>
+                            <td>{{this.description}}</td>
+                            <td>{{this.code}}</td>
+                            <td>{{this.price}}</td>
+                            <td>{{this.category}}</td>
+                            <td>{{this.stock}}</td>
+                            <td>
+                                <form action="/products/{{this._id}}?_method=DELETE" method="POST"
+                                    style="display:inline;">
+                                    <button type="submit"
+                                        onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">Eliminar</button>
+                                </form>
+                                <form action="/products/{{this._id}}/edit" method="GET" style="display:inline;">
+                                    <button type="submit">Actualizar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {{/each}}
+                        {{else}}
+                        <tr>
+                            <td colspan="8">No hay productos cargados.</td>
+                        </tr>
+                        {{/if}}
+                    </tbody>
+                </table>
+                <div class="pagination" style="margin-top:15px; text-align:center;">
+                    {{#if hasPrevPage}}
+                    <a href="{{prevLink}}">⬅ Anterior</a>
+                    {{/if}}
+                    <span>Página {{currentPage}} de {{totalPages}}</span>
+                    {{#if hasNextPage}}
+                    <a href="{{nextLink}}">Siguiente ➡</a>
+                    {{/if}}
+                </div>
+            </div>
+            <hr />
+            <div class="product-form">
+                <h3>Agregar Producto</h3>
+                <form action="/products/" method="POST">
+                    <input type="text" id="title" name="title" placeholder="Título" required>
+                    <input type="text" id="description" name="description" placeholder="Descripción" required>
+                    <input type="text" id="code" name="code" placeholder="Código" required>
+                    <input type="number" id="price" name="price" placeholder="Precio" required step="0.01">
+                    <label>
+                        Status:
+                        <input type="checkbox" id="status" name="status" placeholder="Status" value="true">
+                    </label>
+                    <input type="number" id="stock" name="stock" placeholder="Stock" required>
+                    <input type="text" id="category" name="category" placeholder="Categoría" required>
+                    <input type="text" id="thumbnails" name="thumbnails" placeholder="Thumbnails" required>
+                    <button type="submit">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const result = urlParams.get("result");
+  const message = urlParams.get("message");
+
+  if (result === "success") {
+    Swal.fire({
+      icon: "success",
+      title: "Producto agregado",
+      text: "El producto se agregó correctamente",
+      confirmButtonText: "OK"
+    });
+  } else if (result === "error") {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: message || "Hubo un problema al agregar el producto",
+      confirmButtonText: "Intentar de nuevo"
+    });
+  }
+</script>
+</html>

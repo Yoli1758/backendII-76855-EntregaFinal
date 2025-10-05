@@ -1,0 +1,44 @@
+<h1>Gestion de Usuarios</h1>
+<div class="table-container">
+    <table border="1" cellpadding="8" cellspacing="0" class="gestion">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Accions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <form method="POST" action="/user/{{this._id}}?_method=PUT">
+                    <td><input type="text" name="first_name" value="{{this.first_name}}"></td>
+                    <td><input type="text" name="last_name" value="{{this.last_name}}"></td>
+                    <td><input type="email" value="{{this.email}}" readonly></td>
+                    <td>
+                        <select name="role">
+                            <option value="user" {{#if (eq this.role "user" )}}selected{{/if}}>User</option>
+                            <option value="admin" {{#if (eq this.role "admin" )}}selected{{/if}}>Admin</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button type="submit">Actualizar</button>
+                </form>
+
+                <form method="POST" action="/user/{{this._id}}?_method=DELETE" style="display:inline;">
+                    <button type="submit" onclick="return confirm('¿Seguro que deseas eliminar este usuario?');">
+                        Eliminar
+                    </button>
+                </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
+<br>
+<a href="/" style="color: blue;font-size: 25px">⬅ Volver al inicio</a>

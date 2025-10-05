@@ -14,25 +14,20 @@ function cookieExtractor(req) {
 }
 
 
-
-
 export function initPassport() {
 
     passport.use("register", new LocalStrategy(
         { usernameField: "email", passReqToCallback: true },
-        async (req,email,password, done) => {
+        async (req, email, password, done) => {
             try {
-                // console.log("estoy en register de passport")
                 const Data = {
-                    first_name:req.body.first_name,
-                    last_name:req.body.last_name,
-                    age:req.body.age,
+                    first_name: req.body.first_name,
+                    last_name: req.body.last_name,
+                    age: req.body.age,
                     email,
                     password
                 }
-                const user = await AuthService.register(Data );
-
-                // console.log("tenemos el user",user)
+                const user = await AuthService.register(Data);
                 return done(null, user)
             } catch (err) { return done(null, false, err.message); }
         }
@@ -42,15 +37,11 @@ export function initPassport() {
         { usernameField: "email", passwordField: "password", session: false },
         async (email, password, done) => {
             try {
-
-                console.log("vamos a loguearnos...",email,password)
                 const user = await AuthService.login(email, password);
-                console.log("verificando si no s logueamos...",user)
                 return done(null, user)
             } catch (err) { return done(null, false, err.message); }
         }
     ));
-
 
     passport.use("jwt", new JwtStrategy(
         {
@@ -69,7 +60,6 @@ export function initPassport() {
         }
     ))
 
-
     passport.use("current", new JwtStrategy(
         {
             jwtFromRequest: cookieExtractor,
@@ -85,8 +75,5 @@ export function initPassport() {
             }
         }
     ));
-
-
-
 
 }
